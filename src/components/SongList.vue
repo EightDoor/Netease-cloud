@@ -163,7 +163,7 @@ import { mapState } from "vuex"
                "SongListSubscribedCount",
                "ChangeIddd",
                "SongListChangeIdNews",
-               "SonglistDetailIdsNews"
+               "SonglistDetailIdsNews",
            ]),
        },
        methods:{
@@ -241,6 +241,10 @@ import { mapState } from "vuex"
             arrar_6.style.cssText = "display:none";
         }
        },
+       beforeRouteLeave(to, from, next) {
+          this.$store.commit("SonglistShow124");
+          next();
+       }
     }
 </script>
 <style scoped lang="scss">
