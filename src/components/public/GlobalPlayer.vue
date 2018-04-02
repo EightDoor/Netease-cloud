@@ -1,8 +1,9 @@
 <template>
   <div id="GlobalPlayer">
       <div class="GlobalPlayer-1"  v-if="SonglistShow">
-          <ul class="GlobalPlayer-2">
+             <ul class="GlobalPlayer-2">
               <li><img :src="SonglistDetailIds1" alt="SonglistDetailIds2"></li>
+               <router-link to="/player" tag="li">
               <li class="GlobalPlayer-21">
                   <div>
                       {{SonglistDetailIds3 | SonglistDetailIds3}}
@@ -11,6 +12,7 @@
                       {{SonglistDetailIds2 | SonglistDetailIds3}}
                   </div>
               </li>
+            </router-link>
              <li @click="ChangePlaylist"><i class="iconfont icon-liebiao8"></i></li>
               <li ><i @click="ChangeBoFang" id="ChangeBoFang" class="iconfont icon-bofang"></i></li>
               <div style="clear:both"></div>
@@ -52,7 +54,6 @@ import { mapState } from "vuex"
     export default {
         data(){
             return {
-               SonglistShow:false,
                BoFang:true,
                ZanTing:false,
             }
@@ -66,12 +67,13 @@ import { mapState } from "vuex"
                 "SuccessValName111",
                 "SongListTracksName1",
                 "SongListMusic11",
-                "SongListDetailsId"
+                "SongListDetailsId",
+                "SonglistShow"
             ])
         },
         watch:{
         ChangeId111(val){
-        this.SonglistShow=true;
+        this.$store.commit("SonglistShow123")
         var myAudio = document.getElementById("myAudio");
         myAudio.src = this.ChangeId111;
         myAudio.play();
@@ -124,7 +126,7 @@ import { mapState } from "vuex"
             },
             qingkongshanchu(){
                this.$refs.audio.pause();
-               this.SonglistShow=false;
+               this.$store.commit("SonglistShow124");
                 document.body.style.height = "unset"
                 document.body.style["overflow-y"] = "auto"  
             },
@@ -137,7 +139,7 @@ import { mapState } from "vuex"
                 type:"SonglistDetailIds",
                 ChangeId:val
                 })
-            }
+            },
         },
         filters:{
             SongListTracksNameGl(val){
@@ -154,7 +156,7 @@ import { mapState } from "vuex"
                     return val
                 }
             }
-        }
+        },
     }
 </script>
 <style scoped lang="scss">

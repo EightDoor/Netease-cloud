@@ -79,5 +79,11 @@ export const mutations = {
     },
     SONGLISTDETAILIDSNEWS(state,SonglistDetailIdsNews){
         state.SonglistDetailIdsNews = SonglistDetailIdsNews;
+    },
+    SonglistShow123(state){
+        state.SonglistShow=true
+    },
+    SonglistShow124(state){
+        state.SonglistShow=false;
     }
 }
