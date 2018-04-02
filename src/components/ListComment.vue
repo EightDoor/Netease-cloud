@@ -121,7 +121,8 @@ import { mapState } from "vuex"
                 this.$store.dispatch({
                     type:"SongDetails",
                     detailss:this.SongListDetailsId
-                })
+                });
+                this.$store.commit("SonglistShow123");
             },
             loadMore11 () {
                 this.loading11=true;

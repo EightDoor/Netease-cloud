@@ -2,10 +2,10 @@
   <div id="PLayer">
       <div class="Player-top">
           <ul>
-              <li><i class="iconfont icon-sdf"></i></li>
+              <li @click="PlayerBack"><i class="iconfont icon-sdf"></i></li>
               <li>
-                  <div>生命之枪（YT_Off）</div>
-                  <div>Yt_offf<span> ></span></div>
+                  <div class="Player-top-div1"><div class="Player-top-div2">{{SonglistDetailIds3}}</div></div>
+                  <div>{{SonglistDetailIds2}}<span> ></span></div>
               </li>
               <li><i class="iconfont icon-fenxiang"></i></li>
               <div style="clear:both"></div>
@@ -15,7 +15,7 @@
           <div class="Player-Record">
               <div class="Player-Record-1">
                   <div class="Player-Record-2">
-
+                      <img :src="SonglistDetailIds1" alt="">
                   </div>
               </div>
           </div>
@@ -35,13 +35,23 @@
       <div class="Controller">
           <ul>
               <li><i class="iconfont icon-danquxunhuan"></i></li>
-              <li><i class="iconfont"></i></li>
+              <li><i class="iconfont icon-iconset0423"></i></li>
+              <li><i class="iconfont icon-bofang"></i></li>
+              <li><i class="iconfont icon-iconset0424"></i></li>
+              <li><i class="iconfont icon-liebiao8"></i></li>
+              <div style="clear:both"></div>
           </ul>
       </div>
   </div>
 </template>
 <script>
 import { mapState } from "vuex"
+window.onload=function(){
+    var PlayerLeft = document.getElementsByClassName("Player-top-div1");
+    if(PlayerLeft.scrollLeft>0){
+        console.log(1)
+    }
+}
     export default {
         data(){
             return {
@@ -50,10 +60,22 @@ import { mapState } from "vuex"
         },
         computed:{
              ...mapState([
-                 "SonglistShow"
+                 "SonglistShow",
+                 "SongListDetailsId",
+                 "SonglistDetailIds1",
+                 "SonglistDetailIds2",
+                 "SonglistDetailIds3"
              ])
         },
-        mounted(){
+        methods:{
+            PlayerBack(){
+                this.$router.back(-1);
+                this.$store.dispatch({
+                type:"SongDetails",
+                detailss:this.SongListDetailsId
+                });
+                this.$store.commit("SonglistShow123");
+            }
         }
     }
 </script>
@@ -73,19 +95,19 @@ $Player-10:10px;
     border-bottom:2px solid #534d60;
     >ul{
     >li:nth-child(2){
-        >div{
-            width:$Player-100*5;
-        };
+        overflow:scroll;
+        width:$Player-100*5;
         >div:nth-child(1){
             height:$Player-10*6;
             line-height:$Player-10*6;
+            width:$Player-100*10;
             font-size: $Player-10*3.2;
             color:white;
         };
         >div:nth-child(2){
             height:$Player-10*4;
             line-height:$Player-10*4;
-            font-size:$Player-10*2;
+            font-size:$Player-10*2.4;
             color:#868391
         }
     }
@@ -122,10 +144,14 @@ $Player-10:10px;
         border-radius:50%;
         padding:$Player-100/1.7;
         .Player-Record-2{
-            border:1px solid red;
             width: 100%;
             height:100%;
             border-radius:50%;
+            img{
+                widows: 100% ;
+                height:100%;
+                border-radius:50%;
+            }
         }
     }
 }
@@ -133,7 +159,10 @@ $Player-10:10px;
     width:100%;
     height:$Player-100;
     text-align:center;
-    >ul>li{
+    >ul{ 
+        width: $Player-100*6;
+        margin:0px auto; 
+    >li{
         float:left;
         width:25%;
         position:relative;
@@ -151,12 +180,14 @@ $Player-10:10px;
         width: $Player-10*6;
         height:$Player-10*3;
         line-height: $Player-10*3;
-        background:#443336;
+        background:rgb(72,59,61);
+        border-radius:50%;
         }
-    }
+       }
+     }
 }
 .Playback-bar{
-    width:$Player-100*6.7;
+    width:$Player-100*6.5;
     height:$Player-10*5;
     border:1px solid red;
     margin:0px auto;
@@ -164,10 +195,27 @@ $Player-10:10px;
     color:white;
 }
 .Controller{
-    height:$Player-100*1.5;
+    height:$Player-100*2;
     width:100%;
-    border:1px solid red;
     line-height:$Player-100*1.5;
+    >ul{
+        width:100%;
+        margin:0px auto;
+        >li{
+            float:left;
+            width: 20%;
+            text-align:center;
+            >i{
+                font-size:$Player-10*6;
+                color:#c4c0c2;
+            }
+        };
+        >li:nth-child(3){
+            >i{
+                font-size:$Player-10*9;
+            }
+        }
+    }
 }
 </style>
 
