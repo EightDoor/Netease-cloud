@@ -169,6 +169,7 @@ import { mapState } from "vuex"
        methods:{
            change(){
                this.$router.back(-1);
+               this.$store.commit("SonglistShow123")
            },
             showSnackbar () {
             this.snackbar = true

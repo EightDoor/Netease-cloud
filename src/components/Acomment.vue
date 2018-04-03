@@ -66,7 +66,7 @@
                 </div>
             </li>
             <!--评论加载。。。-->
-            <div v-for="(val1,index1) in successcomments1" :key="index1+111" >
+            <div v-for="(val1,index1) in successcomments1" :key="index1+111">
             <li v-for="(val,index) in val1" :key="index">
                     <ul class="ul-li-1">
                         <li><img :src="val.user.avatarUrl" alt=""></li>
@@ -85,14 +85,16 @@
                 </div>
             </li>
             </div>
-            <mu-infinite-scroll :scroller="scroller11" :loading="loading11" :loadingText="loadingText11" @load="loadMore11"/> <!--出现错误问题-->
         </ul>
          <mu-snackbar v-if="snackbar" message="加载完成" action="关闭" @actionClick="hideSnackbar" @close="hideSnackbar"/>
+         <vue-loading  style="position:fixed;left:45%;top:40%" v-if="ShowLoading" type="bars" color="#d9544e" :size="{ width: '30px', height: '30px' }"></vue-loading>
+         <mu-infinite-scroll :scroller="scroller11" :loading="loading11" :loadingText="loadingText11" @load="loadMore11"/> <!--出现错误问题-->
   </div>
 </template>
 <script>
 import { formatDate } from "../components/public/data"
 import Vue from "vue"
+import vueLoading from 'vue-loading-template'
 import { mapState } from "vuex"
 import { mapGetters } from "vuex"
     export default {
@@ -106,8 +108,9 @@ import { mapGetters } from "vuex"
                snackbar: false,
                 loadingText11:"加载中...",
                 ShowLoading:false,
-                ShowSonglist:true,
-                ShowReview41:true,
+                ShowSonglist:false,   //评论内容
+                ShowReview41:false, 
+                ShowLoading:true,  //评论总数
             }
         },
         methods:{
@@ -178,6 +181,19 @@ import { mapGetters } from "vuex"
             type:"SongRevieww",
             })
         },
+        components:{
+        "vue-loading":vueLoading
+        },
+        watch:{
+           SongReview2(val,oldval){
+               let _this=this;
+               setTimeout(function(){
+                _this.ShowLoading = false;
+                _this.ShowSonglist = true;
+                _this.ShowReview41 = true; 
+               },500)
+           } 
+        }
     }
 </script>
 <style scoped lang="scss">

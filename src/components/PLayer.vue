@@ -30,7 +30,7 @@
           </ul>
       </div>
       <div class="Playback-bar">
-          1:29 ---3:33
+        <mu-slider v-model="value1" class="demo-slider"/>
       </div>
       <div class="Controller">
           <ul>

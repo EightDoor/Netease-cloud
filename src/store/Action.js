@@ -88,7 +88,7 @@ export const actions = {
     SonglistDetailIds({ commit }, Change) {
         let SonglistChangeIdChange = Change.ChangeId;
         console.log(SonglistChangeIdChange)
-        commit("SONGLISTCHANGEIDCHANGE",SonglistChangeIdChange);
+        commit("SONGLISTCHANGEIDCHANGE", SonglistChangeIdChange);
         axios.get("/song/detail?", {
             params: {
                 ids: Change.ChangeId
@@ -151,31 +151,32 @@ export const actions = {
         let ChangeIddd = index.index;
         commit("CHANGEIDDD", ChangeIddd)
     },
-    SongReview({commit,state}){   //歌曲评论
-        axios.get("/comment/music?",{
-            params:{
-                id:state.SonglistChangeIdChange,
+    SongReview({ commit, state }) { //歌曲评论
+        axios.get("/comment/music?", {
+            params: {
+                id: state.SonglistChangeIdChange,
             }
-        }).then((response)=>{
+        }).then((response) => {
             let SongReview3 = response.data.total; //评论总数
-            commit("SONGREVIEW3",SongReview3);
-            commit("SONGREVIEW4",SongReview3);
-        }).catch((error)=>{
+            commit("SONGREVIEW3", SongReview3);
+            commit("SONGREVIEW4", SongReview3);
+        }).catch((error) => {
             alert("数据请求失败")
         })
     },
-    SongRevieww({commit,state},val){
-        axios.get("/comment/music?",{
-            params:{
-                id:state.SonglistChangeIdChange,
-                limeit:val.value22
+    SongRevieww({ commit, state }, val) {
+        axios.get("/comment/music?", {
+            params: {
+                id: state.SonglistChangeIdChange,
+                limeit: val.value22
             }
-        }).then((response)=>{
+        }).then((response) => {
             let SongReview1 = response.data.hotComments; //精彩评论
             let SongReview2 = response.data.comments; //评论
-            commit("SONGREVIEW1",SongReview1);
-            commit("SONGREVIEW2",SongReview2);
-        }).catch((error)=>{
+            console.log()
+            commit("SONGREVIEW1", SongReview1);
+            commit("SONGREVIEW2", SongReview2);
+        }).catch((error) => {
             alert("数据请求失败")
         })
     }
