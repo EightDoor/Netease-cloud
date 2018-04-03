@@ -22,7 +22,7 @@
                         循序播放({{SongListTracksName1.length}})
                     </div>
                     <div @click="qingkongshanchu">
-                       <i class="iconfont icon-qingkongshanchu"></i>
+                       <i class="iconfont icon-delete"></i>
                     </div>
                     <div style="clear:both"></div>
                 </div>

@@ -86,6 +86,8 @@ export const actions = {
         })
     },
     SonglistDetailIds({ commit }, Change) {
+        let SonglistChangeIdChange = Change.ChangeId;
+        commit("SONGLISTCHANGEIDCHANGE",SonglistChangeIdChange);
         axios.get("/song/detail?", {
             params: {
                 ids: Change.ChangeId
@@ -147,5 +149,8 @@ export const actions = {
     SongListChangeIdddd({ commit }, index) {
         let ChangeIddd = index.index;
         commit("CHANGEIDDD", ChangeIddd)
+    },
+    SongReview({commit,state}){
+        console.log(state.SonglistChangeIdChange)
     }
 }

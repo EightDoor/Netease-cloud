@@ -4,10 +4,10 @@
           <ul>
               <li @click="PlayerBack"><i class="iconfont icon-sdf"></i></li>
               <li>
-                  <div class="Player-top-div1"><div class="Player-top-div2">{{SonglistDetailIds3}}</div></div>
+                  <div>{{PlayerJ}}</div>
                   <div>{{SonglistDetailIds2}}<span> ></span></div>
               </li>
-              <li><i class="iconfont icon-fenxiang"></i></li>
+              <li><i class="iconfont icon-yduifenxiang3"></i></li>
               <div style="clear:both"></div>
           </ul>
       </div>
@@ -23,7 +23,7 @@
       <div class="Player-comment">
           <ul>
               <li><i class="iconfont icon-xin"></i></li>
-              <li><i class="iconfont icon-xiazai"></i></li>
+              <li><i class="iconfont icon-plus-download"></i></li>
               <li><i class="iconfont icon-pinglun"></i><div class="div999">999+</div></li>
               <li><i class="iconfont icon-diandian"></i></li>
               <div style="clear:both"></div>
@@ -46,12 +46,7 @@
 </template>
 <script>
 import { mapState } from "vuex"
-window.onload=function(){
-    var PlayerLeft = document.getElementsByClassName("Player-top-div1");
-    if(PlayerLeft.scrollLeft>0){
-        console.log(1)
-    }
-}
+import { mapGetters } from "vuex"
     export default {
         data(){
             return {
@@ -65,6 +60,9 @@ window.onload=function(){
                  "SonglistDetailIds1",
                  "SonglistDetailIds2",
                  "SonglistDetailIds3"
+             ]),
+             ...mapGetters([
+                 "PlayerJ"
              ])
         },
         methods:{
@@ -76,7 +74,7 @@ window.onload=function(){
                 });
                 this.$store.commit("SonglistShow123");
             }
-        }
+        },
     }
 </script>
 <style lang="scss" scoped>
@@ -95,14 +93,14 @@ $Player-10:10px;
     border-bottom:2px solid #534d60;
     >ul{
     >li:nth-child(2){
-        overflow:scroll;
         width:$Player-100*5;
         >div:nth-child(1){
             height:$Player-10*6;
             line-height:$Player-10*6;
-            width:$Player-100*10;
+            width:100%;
             font-size: $Player-10*3.2;
             color:white;
+            overflow:scroll;
         };
         >div:nth-child(2){
             height:$Player-10*4;

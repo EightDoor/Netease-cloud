@@ -25,5 +25,6 @@ export const state = {
     ChangeIddd: 1,
     SongListChangeIdNews: '',
     SonglistDetailIdsNews: '',
-    SonglistShow:false
+    SonglistShow:false,
+    SonglistChangeIdChange:'',
 }

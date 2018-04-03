@@ -50,7 +50,7 @@
                      </li>
                       <li>
                           <div>
-                              <i class="iconfont icon-fenxiang"></i>
+                              <i class="iconfont icon-yduifenxiang3"></i>
                           </div>
                           <div>{{SongListShareCount}}</div>
                      </li>

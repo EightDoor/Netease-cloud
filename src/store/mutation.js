@@ -85,5 +85,8 @@ export const mutations = {
     },
     SonglistShow124(state){
         state.SonglistShow=false;
+    },
+    SONGLISTCHANGEIDCHANGE(state,SonglistChangeIdChange){
+        state.SonglistChangeIdChange = SonglistChangeIdChange;
     }
 }
