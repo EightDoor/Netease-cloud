@@ -88,5 +88,17 @@ export const mutations = {
     },
     SONGLISTCHANGEIDCHANGE(state,SonglistChangeIdChange){
         state.SonglistChangeIdChange = SonglistChangeIdChange;
+    },
+    SONGREVIEW1(state,SongReview1){
+        state.SongReview1 = SongReview1;
+    },
+    SONGREVIEW2(state,SongReview2){
+        state.SongReview2 = SongReview2;
+    },
+    SONGREVIEW3(state,SongReview3){
+        state.SongReview3 = SongReview3;
+    },
+    SONGREVIEW4(state,SongReview3){
+        state.SongReview4 =SongReview3;
     }
 }

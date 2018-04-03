@@ -24,7 +24,7 @@
           <ul>
               <li><i class="iconfont icon-xin"></i></li>
               <li><i class="iconfont icon-plus-download"></i></li>
-              <li><i class="iconfont icon-pinglun"></i><div class="div999">999+</div></li>
+              <router-link to="/Acomment"><li><i class="iconfont icon-pinglun"></i><div class="div999">{{SongReview3}}</div></li></router-link>
               <li><i class="iconfont icon-diandian"></i></li>
               <div style="clear:both"></div>
           </ul>
@@ -59,10 +59,11 @@ import { mapGetters } from "vuex"
                  "SongListDetailsId",
                  "SonglistDetailIds1",
                  "SonglistDetailIds2",
-                 "SonglistDetailIds3"
+                 "SonglistDetailIds3",
              ]),
              ...mapGetters([
-                 "PlayerJ"
+                 "PlayerJ",
+                 "SongReview3"
              ])
         },
         methods:{
@@ -73,7 +74,7 @@ import { mapGetters } from "vuex"
                 detailss:this.SongListDetailsId
                 });
                 this.$store.commit("SonglistShow123");
-            }
+            },
         },
     }
 </script>
@@ -169,7 +170,19 @@ $Player-10:10px;
             font-size:$Player-10*5.6;
             line-height: $Player-100;
         };
-        .div999{
+       }
+    >a{
+    display:block;
+    >li{
+        float:left;
+        width:25%;
+        position:relative;
+        >i{
+            color:#c4c0c2;
+            font-size:$Player-10*5.6;
+            line-height: $Player-100;
+        };
+         .div999{
         font-size:$Player-10*2;
         position:absolute;
         top:$Player-10*1.5;
@@ -180,8 +193,9 @@ $Player-10:10px;
         line-height: $Player-10*3;
         background:rgb(72,59,61);
         border-radius:50%;
-        }
+        }        
        }
+      }
      }
 }
 .Playback-bar{

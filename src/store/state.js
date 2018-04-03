@@ -27,4 +27,8 @@ export const state = {
     SonglistDetailIdsNews: '',
     SonglistShow:false,
     SonglistChangeIdChange:'',
+    SongReview1:"", //歌曲精彩评论
+    SongReview2:[], //歌曲评论
+    SongReview3:[], //歌曲的评论数量 999+
+    SongReview4:''  //歌曲评论总数
 }

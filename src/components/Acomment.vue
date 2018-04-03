@@ -3,19 +3,19 @@
       <div class="top-1" >
           <ul>
               <li><i @click="change()" class="iconfont icon-sdf"></i></li>
-              <li>评论({{successtotal}})</li>
+              <li>评论<span v-if="ShowReview41">({{SongReview4}})</span></li>
               <div style="clear:both"></div>
           </ul>
       </div>
         <div @click="change()" class="bottom-1" v-if="ShowSonglist" >
             <div class="bottom-img-left">
-                <img :src="SonglistAvatarUrl" alt="">
+                <img :src="SonglistDetailIds1" alt="">
                 <div class="bottom-img-left-1">
                     <div>
-                        {{SongListSignature | Intercept(SongListSignature)}}
+                        {{PlayerJ}}
                     </div>
                     <div>
-                        {{SongListNickname}}
+                        {{SonglistDetailIds2}}
                     </div>
                 </div>
                 <div style="clear:both"></div>
@@ -29,7 +29,7 @@
             精彩评论
         </div>
         <ul class="ul-li" v-if="ShowSonglist">
-            <li v-for="(val,index) in successhot" :key="index">
+            <li v-for="(val,index) in SongReview1" :key="index">
                     <ul class="ul-li-1">
                         <li><img :src="val.user.avatarUrl" alt=""></li>
                         <li class="ul-li-4">
@@ -45,10 +45,10 @@
             </li>
         </ul>
         <div class="middle" v-if="ShowSonglist">
-        最新评论({{successtotal}})
+        最新评论({{SongReview4}})
         </div>
          <ul class="ul-li" v-if="ShowSonglist">
-            <li v-for="(val,index) in successcomments" :key="index">
+            <li v-for="(val,index) in SongReview2" :key="index">
                     <ul class="ul-li-1">
                         <li><img :src="val.user.avatarUrl" alt=""></li>
                         <li class="ul-li-4">
@@ -93,14 +93,8 @@
 <script>
 import { formatDate } from "../components/public/data"
 import Vue from "vue"
-Vue.filter("Intercept",function(val){
-    if(val.length>10){
-        return val.substr(0,14)+"...";
-    }else {
-        return val;
-    }
-});
 import { mapState } from "vuex"
+import { mapGetters } from "vuex"
     export default {
         data () {
             return {
@@ -109,10 +103,11 @@ import { mapState } from "vuex"
                scroller11:null,
                num:1,
                successcomments1:[],
-             snackbar: false,
+               snackbar: false,
                 loadingText11:"加载中...",
                 ShowLoading:false,
                 ShowSonglist:true,
+                ShowReview41:true,
             }
         },
         methods:{
@@ -122,25 +117,26 @@ import { mapState } from "vuex"
                     type:"SongDetails",
                     detailss:this.SongListDetailsId
                 });
-                this.$store.commit("SonglistShow123");
+                this.$store.commit("SonglistShow124");
             },
             loadMore11 () {
-                this.loading11=true;
-            var loading12 = this.loading11;
+            this.loading11=true;
+            var  loading12 = this.loading11;
             var  Num=this.num;
                 setTimeout(()=>{
-                if(Math.ceil(this.successtotal/20)>=Num){
+                if(Math.ceil(this.SongReview4/20)>=Num){
                     this.num+=1;
-                    this.successcomments1.push(this.SuccessPreservation);
+                    this.successcomments1.push(this.SongReview2);
                     this.$store.dispatch({
-                    type:"SongListPaging",
+                    type:"SongRevieww",
                     value22:Num,
                     })
                 }else{
                         this.snackbar = true
                         if (this.snackTimer) clearTimeout(this.snackTimer)
                         this.snackTimer = setTimeout(() => { this.snackbar = false }, 2000)
-                    return;
+                        this.loading11=false;
+                        return;
                 }
                 this.loading11=false;
                 },2000)
@@ -152,15 +148,16 @@ import { mapState } from "vuex"
         },
         computed:{
             ...mapState([
-                "successtotal",
-                "SonglistAvatarUrl",
-                "SongListSignature",
-                "SongListNickname",
-                "successhot",
-                "successcomments",
-                "SuccessPreservation",
-                "SongListDetailsId"
+                "SongListDetailsId",
+                "SonglistDetailIds1",
+                "SonglistDetailIds2",
+                "SongReview4",
+                "SongReview1",
+                "SongReview2",
             ]),
+            ...mapGetters([
+                "PlayerJ"
+            ])
         },
         filters:{
             TimeVal (val){
@@ -169,12 +166,17 @@ import { mapState } from "vuex"
             }
         },
         mounted(){
-            if(this.successhot.length>0){
+            if(this.SongReview1.length>0){
                 this.transition = true;
             }else{
                 this.transition = false;
             };
             this.scroller11 = this.$el;
+        },
+        created(){
+            this.$store.dispatch({
+            type:"SongRevieww",
+            })
         },
     }
 </script>

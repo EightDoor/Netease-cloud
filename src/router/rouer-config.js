@@ -6,6 +6,7 @@ import SongList from "../components/SongList.vue"
 import ListSelection from "../components/ListSelection.vue"
 import ListComment from "../components/ListComment.vue"
 import Player from "../components/PLayer.vue"
+import Acomment from "../components/Acomment.vue"
 const store = [
 
     { path: '/move', component: Move ,beforeEnter: (to, from, next) => {
@@ -21,6 +22,7 @@ setTimeout(function(){next();},200)
     { path: '/listselection', component: ListSelection },
     { path: '/comment', component: ListComment },
     { path: '/player',component:Player},
+    { path: '/Acomment',component:Acomment},
     { path: '*', redirect: "/music" }
 ]
 export default store

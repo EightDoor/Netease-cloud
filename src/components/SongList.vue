@@ -196,6 +196,9 @@ import { mapState } from "vuex"
                     type:"SongListChangeIdddd",
                     index:index
                 })
+                this.$store.dispatch({
+                    type:"SongReview"
+                })
             let arrar_1 = document.getElementsByClassName("SongList-play-ol-1-1")[index];
                 arrar_1.style.cssText = "display:none"
             let arrar_3 = document.getElementsByClassName("SongList-play-ol-1-2")[index];
