@@ -30,7 +30,9 @@
           </ul>
       </div>
       <div class="Playback-bar">
-        <mu-slider v-model="value1" class="demo-slider"/>
+       <div style="font-size:10px;">{{value1}}</div><mu-slider v-model="value1" :step="0.01" class="demo-slider"/>
+        <div class="Player-bar-1">{{value2}}</div>
+        <div style="clear:both"></div>
       </div>
       <div class="Controller">
           <ul>
@@ -50,7 +52,8 @@ import { mapGetters } from "vuex"
     export default {
         data(){
             return {
-
+                value1:0,
+                value2:''
             }
         },
         computed:{
@@ -64,7 +67,7 @@ import { mapGetters } from "vuex"
              ...mapGetters([
                  "PlayerJ",
                  "SongReview3"
-             ])
+             ]),
         },
         methods:{
             PlayerBack(){
@@ -76,6 +79,24 @@ import { mapGetters } from "vuex"
                 this.$store.commit("SonglistShow123");
             },
         },
+        mounted(){
+            Date.prototype.Format = function (fmt) { //author: meizz
+            var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+            }
+            this.value2 = new Date(60000).Format("mm:ss");
+        },
+    
+        
     }
 </script>
 <style lang="scss" scoped>
@@ -201,10 +222,13 @@ $Player-10:10px;
 .Playback-bar{
     width:$Player-100*6.5;
     height:$Player-10*5;
-    border:1px solid red;
     margin:0px auto;
     margin-top:$Player-10*3;
     color:white;
+    .Player-bar-1 {
+    float:right;margin-top:-115px;
+    font-size:$Player-10;
+     }
 }
 .Controller{
     height:$Player-100*2;
@@ -228,6 +252,11 @@ $Player-10:10px;
             }
         }
     }
+}
+.demo-slider{
+    width:$Player-100*5;
+    margin-left:70px;
+    top:-40px;
 }
 </style>
 
