@@ -69,7 +69,10 @@ import { mapState } from "vuex"
                 "SongListTracksName1",
                 "SongListMusic11",
                 "SongListDetailsId",
-                "SonglistShow"
+                "SonglistShow",
+                "value1222",
+                "SongListPLayerTotalTime1",
+                "SongListPLayerCount"
             ]),
         },
         watch:{
@@ -82,13 +85,33 @@ import { mapState } from "vuex"
         myAudio.preload = true;
         myAudio.currentTime;
         myAudio.controls=false;
+        this.$store.commit("Changeclick")
         this.$store.dispatch({
             type:"SonglistDetailIds1",
             ChangeId:this.SongListDetailsId
         })
         myAudio.addEventListener("loadeddata",function(){
          myAudio.play();
-         _this.currentTime =myAudio.currentTime;
+            let index11 = myAudio.duration;
+            let minute = index11 /60;
+            let minutes = parseInt(minute);
+            if(minutes<10){
+            minutes = "0"+minutes;
+            }
+            let second = index11 % 60;
+            let seconds = parseInt(second);
+            if(seconds<10){
+            seconds = "0"+seconds;
+            }
+            let index12= ""+minutes+""+":"+""+seconds+"";
+            _this.$store.commit("SongListPLayerTotalTime",index12);
+            _this.$store.commit("SongListPLayerTotalTime1",index11);
+         if(myAudio.play){
+            setInterval(function array(){
+            _this.currentTime =myAudio.currentTime;
+            },1000);
+            clearInterval();
+         }
         });
          },
          SongListMusic11(val,oldVal){
@@ -96,8 +119,23 @@ import { mapState } from "vuex"
              this.$refs.audio.play();  //迷你的列表点击播放歌曲
          },
         currentTime(val){
-            console.log(val)
+        let minute = val /60;
+        let minutes = parseInt(minute);
+        if(minutes<10){
+            minutes = "0"+minutes;
         }
+        let second = val % 60;
+        let seconds = parseInt(second);
+        if(seconds<10){
+            seconds = "0"+seconds;
+        }
+        let index1= ""+minutes+""+":"+""+seconds+"";
+        this.$store.commit("SongListPLayerCount",index1)
+         },
+        SongListPLayerCount(val,oldvalue){
+          let brr = 100/this.SongListPLayerTotalTime1+this.value1222;
+          this.$store.commit("SongListvalue12",brr)
+         }
         },
         methods:{
             ChangeBoFang(){
@@ -148,19 +186,6 @@ import { mapState } from "vuex"
                 ChangeId:val
                 })
             },
-            timeChange(time){    //获取时间 
-              let minute =time/60;   //分钟
-              let minutes = parseInt(minute); 
-              if(minutes<10){
-                  minutes = "0"+minutes;
-              };
-              let second = time % 60;
-              seconds = parseInt(second);
-              if(seconds < 10){
-                  seconds = "0"+seconds;
-              }
-              return    ""+minutes+""+":"+""+seconds+"";
-            }
         },
         filters:{
             SongListTracksNameGl(val){

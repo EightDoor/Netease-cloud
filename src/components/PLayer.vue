@@ -13,7 +13,7 @@
       </div>
       <div class="Player-middle">
           <div class="Player-Record">
-              <div class="Player-Record-1">
+              <div class="Player-Record-1" id="Player-Record-1">
                   <div class="Player-Record-2">
                       <img :src="SonglistDetailIds1" alt="">
                   </div>
@@ -30,8 +30,8 @@
           </ul>
       </div>
       <div class="Playback-bar">
-       <div style="font-size:10px;">{{value1}}</div><mu-slider v-model="value1" :step="0.01" class="demo-slider"/>
-        <div class="Player-bar-1">{{value2}}</div>
+       <div style="font-size:10px;">{{SongListPLayerCount}}</div><mu-slider v-model="value1222" :disabled="true" :step="0.01" class="demo-slider"/>
+        <div class="Player-bar-1">{{SongListPLayerTotalTime}}</div>
         <div style="clear:both"></div>
       </div>
       <div class="Controller">
@@ -52,8 +52,7 @@ import { mapGetters } from "vuex"
     export default {
         data(){
             return {
-                value1:0,
-                value2:''
+                tranformRoutate:0
             }
         },
         computed:{
@@ -63,6 +62,10 @@ import { mapGetters } from "vuex"
                  "SonglistDetailIds1",
                  "SonglistDetailIds2",
                  "SonglistDetailIds3",
+                 "SongListPLayerCount",
+                 "SongListPLayerTotalTime",
+                 "SongListPLayerTotalTime1",
+                 "value1222",
              ]),
              ...mapGetters([
                  "PlayerJ",
@@ -79,24 +82,17 @@ import { mapGetters } from "vuex"
                 this.$store.commit("SonglistShow123");
             },
         },
-        mounted(){
-            Date.prototype.Format = function (fmt) { //author: meizz
-            var o = {
-            "M+": this.getMonth() + 1, //月份
-            "d+": this.getDate(), //日
-            "h+": this.getHours(), //小时
-            "m+": this.getMinutes(), //分
-            "s+": this.getSeconds(), //秒
-            };
-            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-            for (var k in o)
-            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-            return fmt;
-            }
-            this.value2 = new Date(60000).Format("mm:ss");
+        created(){
+            this.$store.commit("SonglistShow124")
         },
-    
-        
+        mounted(){
+            let _this = this;
+            setInterval(function(){
+            let brr = document.getElementById("Player-Record-1");
+            brr.style.cssText = "transform:rotate("+_this.tranformRoutate+"deg)";
+            _this.tranformRoutate+=10;
+            },300)
+        }
     }
 </script>
 <style lang="scss" scoped>
@@ -226,8 +222,8 @@ $Player-10:10px;
     margin-top:$Player-10*3;
     color:white;
     .Player-bar-1 {
-    float:right;margin-top:-115px;
-    font-size:$Player-10;
+    float:right;margin-top:-107px;
+    font-size:$Player-10*2;
      }
 }
 .Controller{

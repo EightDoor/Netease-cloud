@@ -25,10 +25,14 @@ export const state = {
     ChangeIddd: 1,
     SongListChangeIdNews: '',
     SonglistDetailIdsNews: '',
-    SonglistShow:false,
-    SonglistChangeIdChange:'',
-    SongReview1:"", //歌曲精彩评论
-    SongReview2:[], //歌曲评论
-    SongReview3:[], //歌曲的评论数量 999+
-    SongReview4:''  //歌曲评论总数
+    SonglistShow: false,
+    SonglistChangeIdChange: '',
+    SongReview1: "", //歌曲精彩评论
+    SongReview2: [], //歌曲评论
+    SongReview3: [], //歌曲的评论数量 999+
+    SongReview4: '', //歌曲评论总数
+    SongListPLayerCount: "00:00", //歌曲播放的进度显示
+    SongListPLayerTotalTime: "", //播放总时间
+    SongListPLayerTotalTime1: "", //播放的总秒数
+    value1222: 0, //存储的进度
 }

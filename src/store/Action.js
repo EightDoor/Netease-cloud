@@ -87,7 +87,6 @@ export const actions = {
     },
     SonglistDetailIds({ commit }, Change) {
         let SonglistChangeIdChange = Change.ChangeId;
-        console.log(SonglistChangeIdChange)
         commit("SONGLISTCHANGEIDCHANGE", SonglistChangeIdChange);
         axios.get("/song/detail?", {
             params: {
@@ -173,7 +172,6 @@ export const actions = {
         }).then((response) => {
             let SongReview1 = response.data.hotComments; //精彩评论
             let SongReview2 = response.data.comments; //评论
-            console.log()
             commit("SONGREVIEW1", SongReview1);
             commit("SONGREVIEW2", SongReview2);
         }).catch((error) => {

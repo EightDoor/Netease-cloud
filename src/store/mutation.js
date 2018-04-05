@@ -77,28 +77,43 @@ export const mutations = {
     SONGLISTCHANGEIDNEWS(state, SongListChangeIdNews) {
         state.SongListChangeIdNews = SongListChangeIdNews
     },
-    SONGLISTDETAILIDSNEWS(state,SonglistDetailIdsNews){
+    SONGLISTDETAILIDSNEWS(state, SonglistDetailIdsNews) {
         state.SonglistDetailIdsNews = SonglistDetailIdsNews;
     },
-    SonglistShow123(state){
-        state.SonglistShow=true
+    SonglistShow123(state) {
+        state.SonglistShow = true
     },
-    SonglistShow124(state){
-        state.SonglistShow=false;
+    SonglistShow124(state) {
+        state.SonglistShow = false;
     },
-    SONGLISTCHANGEIDCHANGE(state,SonglistChangeIdChange){
+    SONGLISTCHANGEIDCHANGE(state, SonglistChangeIdChange) {
         state.SonglistChangeIdChange = SonglistChangeIdChange;
     },
-    SONGREVIEW1(state,SongReview1){
+    SONGREVIEW1(state, SongReview1) {
         state.SongReview1 = SongReview1;
     },
-    SONGREVIEW2(state,SongReview2){
+    SONGREVIEW2(state, SongReview2) {
         state.SongReview2 = SongReview2;
     },
-    SONGREVIEW3(state,SongReview3){
+    SONGREVIEW3(state, SongReview3) {
         state.SongReview3 = SongReview3;
     },
-    SONGREVIEW4(state,SongReview3){
-        state.SongReview4 =SongReview3;
+    SONGREVIEW4(state, SongReview3) {
+        state.SongReview4 = SongReview3;
+    },
+    SongListPLayerCount(state, index) {
+        state.SongListPLayerCount = index;
+    },
+    SongListPLayerTotalTime(state, index) {
+        state.SongListPLayerTotalTime = index;
+    },
+    SongListPLayerTotalTime1(state, index) {
+        state.SongListPLayerTotalTime1 = index;
+    },
+    SongListvalue12(state, index) {
+        state.value1222 = index;
+    },
+    Changeclick(state) {
+        state.value1222 = 0;
     }
 }
