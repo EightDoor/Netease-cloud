@@ -13,7 +13,7 @@
       </div>
       <div class="Player-middle">
           <div class="Player-Record">
-              <div class="Player-Record-1" id="Player-Record-1">
+              <div class="Player-Record-1" :style="{transform:value3}" id="Player-Record-1">
                   <div class="Player-Record-2">
                       <img :src="SonglistDetailIds1" alt="">
                   </div>
@@ -30,7 +30,7 @@
           </ul>
       </div>
       <div class="Playback-bar">
-       <div style="font-size:10px;">{{SongListPLayerCount}}</div><mu-slider v-model="value1222" :disabled="true" :step="0.01" class="demo-slider"/>
+       <div style="font-size:10px;">{{SongListPLayerCount}}</div><mu-slider v-model="value" :disabled="true" :step="0.01" class="demo-slider"/>
         <div class="Player-bar-1">{{SongListPLayerTotalTime}}</div>
         <div style="clear:both"></div>
       </div>
@@ -38,7 +38,7 @@
           <ul>
               <li><i class="iconfont icon-danquxunhuan"></i></li>
               <li><i class="iconfont icon-iconset0423"></i></li>
-              <li><i class="iconfont icon-bofang"></i></li>
+              <li @click="IconChange"><i v-show="IconBofang" class="iconfont icon-bofang"></i><i v-show="IconZanTing" class="iconfont icon-zanting"></i></li>
               <li><i class="iconfont icon-iconset0424"></i></li>
               <li><i class="iconfont icon-liebiao8"></i></li>
               <div style="clear:both"></div>
@@ -52,7 +52,9 @@ import { mapGetters } from "vuex"
     export default {
         data(){
             return {
-                tranformRoutate:0
+                tranformRoutate:0,
+                value:"",
+                value3:"rotate(50deg)",
             }
         },
         computed:{
@@ -66,6 +68,10 @@ import { mapGetters } from "vuex"
                  "SongListPLayerTotalTime",
                  "SongListPLayerTotalTime1",
                  "value1222",
+                 "TransformRoutate",
+                 "TransformChange",
+                 "IconBofang",
+                 "IconZanTing"
              ]),
              ...mapGetters([
                  "PlayerJ",
@@ -81,18 +87,35 @@ import { mapGetters } from "vuex"
                 });
                 this.$store.commit("SonglistShow123");
             },
+            IconChange(){
+                if(this.IconBofang){
+                    this.$store.commit("IconZanTing1");
+                    this.$store.commit("IconBofang1");
+                    this.$store.commit("TransformChange11");
+                }else{
+                    this.$store.commit("IconZanTing2");
+                    this.$store.commit("IconBofang2");
+                    this.$store.commit("TransformChange12")
+                }
+            }
         },
         created(){
-            this.$store.commit("SonglistShow124")
+            this.$store.commit("SonglistShow124");
+            if(this.TransformChange){
+            setInterval(()=>{
+            this.value3 = "rotate("+this.TransformRoutate+"deg)";
+            this.$store.commit("TransformRoutate")
+            },1);
+            clearInterval();
+            }else{
+            clearInterval();  
+            }
         },
-        mounted(){
-            let _this = this;
-            setInterval(function(){
-            let brr = document.getElementById("Player-Record-1");
-            brr.style.cssText = "transform:rotate("+_this.tranformRoutate+"deg)";
-            _this.tranformRoutate+=10;
-            },300)
-        }
+        watch:{
+            value1222(val,oldval){
+                this.value = val
+            },
+        },
     }
 </script>
 <style lang="scss" scoped>
@@ -253,6 +276,9 @@ $Player-10:10px;
     width:$Player-100*5;
     margin-left:70px;
     top:-40px;
+};
+#Player-Record-1{
+    overflow:hidden
 }
 </style>
 

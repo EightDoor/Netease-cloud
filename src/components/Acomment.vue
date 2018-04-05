@@ -88,7 +88,7 @@
         </ul>
          <mu-snackbar v-if="snackbar" message="加载完成" action="关闭" @actionClick="hideSnackbar" @close="hideSnackbar"/>
          <vue-loading  style="position:fixed;left:45%;top:40%" v-if="ShowLoading" type="bars" color="#d9544e" :size="{ width: '30px', height: '30px' }"></vue-loading>
-         <mu-infinite-scroll :scroller="scroller11" :loading="loading11" :loadingText="loadingText11" @load="loadMore11"/> <!--出现错误问题-->
+         <mu-infinite-scroll  :scroller="scroller11" :loading="loading11" :loadingText="loadingText11" @load="loadMore11"/> <!--出现错误问题-->
   </div>
 </template>
 <script>

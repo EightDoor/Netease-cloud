@@ -35,4 +35,8 @@ export const state = {
     SongListPLayerTotalTime: "", //播放总时间
     SongListPLayerTotalTime1: "", //播放的总秒数
     value1222: 0, //存储的进度
+    TransformRoutate: 0, //旋转的度数存储
+    TransformChange: true, //旋转的开关
+    IconBofang: true,
+    IconZanTing: false,
 }

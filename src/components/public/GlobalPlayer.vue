@@ -56,7 +56,7 @@ import { mapState } from "vuex"
             return {
                BoFang:true,
                ZanTing:false,
-               currentTime:''
+               currentTime:'',
             }
         },
         computed:{
@@ -72,7 +72,9 @@ import { mapState } from "vuex"
                 "SonglistShow",
                 "value1222",
                 "SongListPLayerTotalTime1",
-                "SongListPLayerCount"
+                "SongListPLayerCount",
+                "TransformRoutate",
+                "IconZanTing"
             ]),
         },
         watch:{
@@ -92,6 +94,7 @@ import { mapState } from "vuex"
         })
         myAudio.addEventListener("loadeddata",function(){
          myAudio.play();
+         _this.$store.commit("TransformRoutate1");
             let index11 = myAudio.duration;
             let minute = index11 /60;
             let minutes = parseInt(minute);
@@ -135,6 +138,13 @@ import { mapState } from "vuex"
         SongListPLayerCount(val,oldvalue){
           let brr = 100/this.SongListPLayerTotalTime1+this.value1222;
           this.$store.commit("SongListvalue12",brr)
+         },
+         IconZanTing(val,oldval){
+             if(val){
+                 this.$refs.audio.pause();
+             }else{
+                 this.$refs.audio.play();
+             }
          }
         },
         methods:{

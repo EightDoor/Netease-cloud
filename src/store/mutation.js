@@ -115,5 +115,29 @@ export const mutations = {
     },
     Changeclick(state) {
         state.value1222 = 0;
+    },
+    TransformRoutate(state) {
+        state.TransformRoutate += 0.1;
+    },
+    TransformRoutate1(state) {
+        state.TransformRoutate = 0;
+    },
+    IconZanTing1(state) {
+        state.IconZanTing = true;
+    },
+    IconBofang1(state) {
+        state.IconBofang = false;
+    },
+    IconZanTing2(state) {
+        state.IconZanTing = false;
+    },
+    IconBofang2(state) {
+        state.IconBofang = true;
+    },
+    TransformChange11(state) {
+        state.TransformChange = false;
+    },
+    TransformChange12(state) {
+        state.TransformChange = true;
     }
 }
